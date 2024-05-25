@@ -53,7 +53,7 @@
             this.btnSpalteHinzufügen.TabIndex = 0;
             this.btnSpalteHinzufügen.Text = "Sp Hinzfügen";
             this.btnSpalteHinzufügen.UseVisualStyleBackColor = true;
-            this.btnSpalteHinzufügen.Click += new System.EventHandler(this.btnSpielerHinzufügen_Click);
+            this.btnSpalteHinzufügen.Click += new System.EventHandler(this.btnSpalteHinzufügen_Click);
             // 
             // btnSpalteLoeschen
             // 
@@ -63,6 +63,7 @@
             this.btnSpalteLoeschen.TabIndex = 1;
             this.btnSpalteLoeschen.Text = "Sp Löschen";
             this.btnSpalteLoeschen.UseVisualStyleBackColor = true;
+            this.btnSpalteLoeschen.Click += new System.EventHandler(this.btnSpalteLoeschen_Click);
             // 
             // lblÜberschrieft
             // 
@@ -77,7 +78,7 @@
             // btnSpieler
             // 
             this.btnSpieler.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnSpieler.Location = new System.Drawing.Point(47, 300);
+            this.btnSpieler.Location = new System.Drawing.Point(38, 311);
             this.btnSpieler.Name = "btnSpieler";
             this.btnSpieler.Size = new System.Drawing.Size(50, 26);
             this.btnSpieler.TabIndex = 4;
@@ -87,7 +88,7 @@
             // 
             // btnAuszeichnung
             // 
-            this.btnAuszeichnung.Location = new System.Drawing.Point(103, 300);
+            this.btnAuszeichnung.Location = new System.Drawing.Point(94, 311);
             this.btnAuszeichnung.Name = "btnAuszeichnung";
             this.btnAuszeichnung.Size = new System.Drawing.Size(91, 26);
             this.btnAuszeichnung.TabIndex = 5;
@@ -97,7 +98,7 @@
             // 
             // btnNation
             // 
-            this.btnNation.Location = new System.Drawing.Point(262, 300);
+            this.btnNation.Location = new System.Drawing.Point(253, 311);
             this.btnNation.Name = "btnNation";
             this.btnNation.Size = new System.Drawing.Size(51, 26);
             this.btnNation.TabIndex = 6;
@@ -107,7 +108,7 @@
             // 
             // btnStatistik
             // 
-            this.btnStatistik.Location = new System.Drawing.Point(200, 300);
+            this.btnStatistik.Location = new System.Drawing.Point(191, 311);
             this.btnStatistik.Name = "btnStatistik";
             this.btnStatistik.Size = new System.Drawing.Size(56, 26);
             this.btnStatistik.TabIndex = 7;
@@ -117,7 +118,7 @@
             // 
             // btnTrainer
             // 
-            this.btnTrainer.Location = new System.Drawing.Point(374, 300);
+            this.btnTrainer.Location = new System.Drawing.Point(365, 311);
             this.btnTrainer.Name = "btnTrainer";
             this.btnTrainer.Size = new System.Drawing.Size(59, 26);
             this.btnTrainer.TabIndex = 8;
@@ -127,7 +128,7 @@
             // 
             // btnVerein
             // 
-            this.btnVerein.Location = new System.Drawing.Point(319, 300);
+            this.btnVerein.Location = new System.Drawing.Point(310, 311);
             this.btnVerein.Name = "btnVerein";
             this.btnVerein.Size = new System.Drawing.Size(49, 26);
             this.btnVerein.TabIndex = 9;
@@ -137,7 +138,7 @@
             // 
             // btnVertrag
             // 
-            this.btnVertrag.Location = new System.Drawing.Point(439, 300);
+            this.btnVertrag.Location = new System.Drawing.Point(430, 311);
             this.btnVertrag.Name = "btnVertrag";
             this.btnVertrag.Size = new System.Drawing.Size(56, 26);
             this.btnVertrag.TabIndex = 10;
@@ -147,7 +148,7 @@
             // 
             // btnWerbepartner
             // 
-            this.btnWerbepartner.Location = new System.Drawing.Point(501, 300);
+            this.btnWerbepartner.Location = new System.Drawing.Point(492, 311);
             this.btnWerbepartner.Name = "btnWerbepartner";
             this.btnWerbepartner.Size = new System.Drawing.Size(88, 26);
             this.btnWerbepartner.TabIndex = 11;
@@ -157,7 +158,7 @@
             // 
             // btnWettbewerb
             // 
-            this.btnWettbewerb.Location = new System.Drawing.Point(595, 300);
+            this.btnWettbewerb.Location = new System.Drawing.Point(586, 311);
             this.btnWettbewerb.Name = "btnWettbewerb";
             this.btnWettbewerb.Size = new System.Drawing.Size(79, 26);
             this.btnWettbewerb.TabIndex = 12;
@@ -178,7 +179,7 @@
             // 
             this.lblTabellen.AutoSize = true;
             this.lblTabellen.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTabellen.Location = new System.Drawing.Point(47, 280);
+            this.lblTabellen.Location = new System.Drawing.Point(38, 291);
             this.lblTabellen.Name = "lblTabellen";
             this.lblTabellen.Size = new System.Drawing.Size(123, 17);
             this.lblTabellen.TabIndex = 14;
@@ -206,7 +207,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmHauptForm";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHauptForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

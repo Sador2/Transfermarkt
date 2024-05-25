@@ -23,7 +23,7 @@ namespace MySQL_Test
         public Klasse_Transfermarkt()
         {
             // Verbindungsinformationen zusammensetzen
-            connectionString = $"Server=localhost;Database=transfermarkt;Uid=root; Pwd=Sadfth2334;";
+            connectionString = $"Server=local;Database=transfermarkt;Uid=Yonas; Pwd=12345;";
         }
         public Klasse_Transfermarkt(string server, string database, string user, string password) :this()
         {
@@ -65,6 +65,7 @@ namespace MySQL_Test
                     // SQL-Abfrage ausführen, um den neuen Spieler einzufügen
                     command.ExecuteNonQuery();
                 }
+                connection.Close();
             }
         }
     }

@@ -33,4 +33,4 @@ D:\Sador Schule\SWE\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.pd
 D:\Sador Schule\SWE\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.genruntimeconfig.cache
 D:\Sador Schule\SWE\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\ref\MySQL_Test.dll
 D:\Sador Schule\SWE\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.FrmHauptForm.resources
-D:\Sador Schule\SWE\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.FrmNeueSpieler.resources
+D:\Sador Schule\SWE\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.FrmNeueSpalte.resources
