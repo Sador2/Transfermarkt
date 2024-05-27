@@ -43,6 +43,8 @@
             this.btnWettbewerb = new System.Windows.Forms.Button();
             this.listView = new System.Windows.Forms.ListView();
             this.lblTabellen = new System.Windows.Forms.Label();
+            this.btnSpierInfo = new System.Windows.Forms.Button();
+            this.lblProzedurVerwenden = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnSpalteHinzufügen
@@ -168,6 +170,7 @@
             // 
             // listView
             // 
+            this.listView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.listView.GridLines = true;
             this.listView.Location = new System.Drawing.Point(139, 49);
             this.listView.Name = "listView";
@@ -185,11 +188,32 @@
             this.lblTabellen.TabIndex = 14;
             this.lblTabellen.Text = "Wahl der Tabellen:";
             // 
+            // btnSpierInfo
+            // 
+            this.btnSpierInfo.Location = new System.Drawing.Point(613, 67);
+            this.btnSpierInfo.Name = "btnSpierInfo";
+            this.btnSpierInfo.Size = new System.Drawing.Size(79, 23);
+            this.btnSpierInfo.TabIndex = 15;
+            this.btnSpierInfo.Text = "Spier Info";
+            this.btnSpierInfo.UseVisualStyleBackColor = true;
+            this.btnSpierInfo.Click += new System.EventHandler(this.btnSpierInfo_Click);
+            // 
+            // lblProzedurVerwenden
+            // 
+            this.lblProzedurVerwenden.AutoSize = true;
+            this.lblProzedurVerwenden.Location = new System.Drawing.Point(613, 49);
+            this.lblProzedurVerwenden.Name = "lblProzedurVerwenden";
+            this.lblProzedurVerwenden.Size = new System.Drawing.Size(118, 15);
+            this.lblProzedurVerwenden.TabIndex = 16;
+            this.lblProzedurVerwenden.Text = "Prozedur Verwenden:";
+            // 
             // FrmHauptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 354);
+            this.Controls.Add(this.lblProzedurVerwenden);
+            this.Controls.Add(this.btnSpierInfo);
             this.Controls.Add(this.lblTabellen);
             this.Controls.Add(this.listView);
             this.Controls.Add(this.btnWettbewerb);
@@ -229,5 +253,7 @@
         private Button btnWettbewerb;
         private ListView listView;
         private Label lblTabellen;
+        private Button btnSpierInfo;
+        private Label lblProzedurVerwenden;
     }
 }

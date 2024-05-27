@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
 namespace MySQL_Test
@@ -276,6 +277,67 @@ namespace MySQL_Test
                 e.Cancel = true;
             }
         }
+        private void btnSpierInfo_Click(object sender, EventArgs e)
+        {
+            FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
+            ViewÜberschrieft("Spieler Info");
+
+            if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
+            {
+                Klasse_Transfermarkt flasse_Transfermarkt = new Klasse_Transfermarkt();                
+                string query = $"CALL SpielerInformationen('{frmProzedurEingabe.SpielerName}')";
+
+                // Verbindung zur Datenbank herstellen und die gespeicherte Prozedur ausführen
+                using (MySqlConnection connection = new MySqlConnection(flasse_Transfermarkt.ConnectionString))
+                {
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        {
+                            using (MySqlDataReader reader = command.ExecuteReader())
+                            {
+                                if (reader.HasRows)
+                                {
+                                    listView.Items.Clear();
+                                    listView.Columns.Clear();
+
+                                    // Spalten hinzufügen
+                                    for (int i = 0; i < reader.FieldCount; i++)
+                                    {
+                                        listView.Columns.Add(reader.GetName(i), 100, HorizontalAlignment.Left);
+                                    }
+
+                                    // Daten anzeigen
+                                    while (reader.Read())
+                                    {
+                                        ListViewItem item = new ListViewItem(reader.GetString(0)); // Annahme: Erste Spalte enthält Spielername
+                                        for (int i = 1; i < reader.FieldCount; i++)
+                                        {
+                                            // Wert aus der Datenbank lesen und entsprechend seines Typs abrufen
+                                            object value = reader.GetValue(i);
+                                            string formattedValue = value is DBNull ? "" : value.ToString();
+                                            item.SubItems.Add(formattedValue);
+                                        }
+                                        listView.Items.Add(item);
+                                    }
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Es wurden keine Spielerinformationen gefunden.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using MySql.Data.MySqlClient;
 //using System.Collections.Generic;
 //using System.Linq;
@@ -68,5 +69,6 @@ namespace MySQL_Test
                 connection.Close();
             }
         }
+
     }
 }
