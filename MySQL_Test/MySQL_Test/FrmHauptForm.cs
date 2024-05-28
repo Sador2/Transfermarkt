@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -277,67 +278,128 @@ namespace MySQL_Test
                 e.Cancel = true;
             }
         }
-        private void btnSpierInfo_Click(object sender, EventArgs e)
+
+        public void ProzedurEingabe(string query)
         {
             FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
-            ViewÜberschrieft("Spieler Info");
+            Klasse_Transfermarkt flasse_Transfermarkt = new Klasse_Transfermarkt();
 
-            if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
+            // Verbindung zur Datenbank herstellen und die gespeicherte Prozedur ausführen
+            using (MySqlConnection connection = new MySqlConnection(flasse_Transfermarkt.ConnectionString))
             {
-                Klasse_Transfermarkt flasse_Transfermarkt = new Klasse_Transfermarkt();                
-                string query = $"CALL SpielerInformationen('{frmProzedurEingabe.SpielerName}')";
-
-                // Verbindung zur Datenbank herstellen und die gespeicherte Prozedur ausführen
-                using (MySqlConnection connection = new MySqlConnection(flasse_Transfermarkt.ConnectionString))
+                try
                 {
-                    try
+                    connection.Open();
+                    using (MySqlCommand command = new MySqlCommand(query, connection))
                     {
-                        connection.Open();
-                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        using (MySqlDataReader reader = command.ExecuteReader())
                         {
-                            using (MySqlDataReader reader = command.ExecuteReader())
+                            if (reader.HasRows)
                             {
-                                if (reader.HasRows)
+                                listView.Items.Clear();
+                                listView.Columns.Clear();
+
+                                // Spalten hinzufügen
+                                for (int i = 0; i < reader.FieldCount; i++)
                                 {
-                                    listView.Items.Clear();
-                                    listView.Columns.Clear();
-
-                                    // Spalten hinzufügen
-                                    for (int i = 0; i < reader.FieldCount; i++)
-                                    {
-                                        listView.Columns.Add(reader.GetName(i), 100, HorizontalAlignment.Left);
-                                    }
-
-                                    // Daten anzeigen
-                                    while (reader.Read())
-                                    {
-                                        ListViewItem item = new ListViewItem(reader.GetString(0)); // Annahme: Erste Spalte enthält Spielername
-                                        for (int i = 1; i < reader.FieldCount; i++)
-                                        {
-                                            // Wert aus der Datenbank lesen und entsprechend seines Typs abrufen
-                                            object value = reader.GetValue(i);
-                                            string formattedValue = value is DBNull ? "" : value.ToString();
-                                            item.SubItems.Add(formattedValue);
-                                        }
-                                        listView.Items.Add(item);
-                                    }
-
+                                    listView.Columns.Add(reader.GetName(i), 100, HorizontalAlignment.Left);
                                 }
-                                else
+
+                                // Daten anzeigen
+                                while (reader.Read())
                                 {
-                                    MessageBox.Show("Es wurden keine Spielerinformationen gefunden.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    ListViewItem item = new ListViewItem(reader.GetString(0)); // Annahme: Erste Spalte enthält Spielername
+                                    for (int i = 1; i < reader.FieldCount; i++)
+                                    {
+                                        // Wert aus der Datenbank lesen und entsprechend seines Typs abrufen
+                                        object value = reader.GetValue(i);
+                                        string formattedValue = value is DBNull ? "" : value.ToString();
+                                        item.SubItems.Add(formattedValue);
+                                    }
+                                    listView.Items.Add(item);
                                 }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Es wurden keine Spielerinformationen gefunden.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                         }
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
+        public void ProzedurEingabeOhne(string spielerName, string auszeichnungName, DateTime auszeichnungDatum)
+        {
+            FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
+            Klasse_Transfermarkt flasse_Transfermarkt = new Klasse_Transfermarkt();
+
+            // Verbindung zur Datenbank herstellen und die gespeicherte Prozedur ausführen
+            using (MySqlConnection connection = new MySqlConnection(flasse_Transfermarkt.ConnectionString))
+            {
+                try
+                {
+                    connection.Open();
+                    using (MySqlCommand command = new MySqlCommand("NeueAuszeichnungHinzufuegen", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        // Parameter hinzufügen
+                        command.Parameters.AddWithValue("@spieler_name", spielerName);
+                        command.Parameters.AddWithValue("@neue_auszeichnung_name", auszeichnungName);
+                        command.Parameters.AddWithValue("@auszeichnung_datum", auszeichnungDatum);
+
+                        // Prozedur ausführen
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Die Auszeichnung wurde erfolgreich hinzugefügt.", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Es wurden keine Änderungen vorgenommen.", "Hinweis", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Ein Fehler ist aufgetreten: " + ex.Message, "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+
+        private void btnSpierInfo_Click(object sender, EventArgs e)
+        {
+            FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
+            frmProzedurEingabe.Überschrieft = "Spieler Eingeben";
+            ViewÜberschrieft("Spieler Info");
+
+            if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
+            {
+                string query = $"CALL SpielerInformationen('{frmProzedurEingabe.SpielerName}')";
+                ProzedurEingabe(query);
+            }
+        }
+        private void btnSpNeueAuszeichnung_Click(object sender, EventArgs e)
+        {
+            FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
+            frmProzedurEingabe.Überschrieft = "Spieler, Auszeichnung und das Datum eingeben:";
+            ViewÜberschrieft("Vom Spieler Neue Auszeichnung");
+
+            if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
+            {
+
+                ProzedurEingabeOhne(frmProzedurEingabe.Name, frmProzedurEingabe.Zwei, frmProzedurEingabe.Drei);
+            }
+        }
 
     }
 }

@@ -45,6 +45,11 @@
             this.lblTabellen = new System.Windows.Forms.Label();
             this.btnSpierInfo = new System.Windows.Forms.Button();
             this.lblProzedurVerwenden = new System.Windows.Forms.Label();
+            this.btnSpNeueAuszeichnung = new System.Windows.Forms.Button();
+            this.btnVNeueAuszeichnung = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnWerbePartnerHinzufügen = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSpalteHinzufügen
@@ -190,9 +195,9 @@
             // 
             // btnSpierInfo
             // 
-            this.btnSpierInfo.Location = new System.Drawing.Point(613, 67);
+            this.btnSpierInfo.Location = new System.Drawing.Point(615, 67);
             this.btnSpierInfo.Name = "btnSpierInfo";
-            this.btnSpierInfo.Size = new System.Drawing.Size(79, 23);
+            this.btnSpierInfo.Size = new System.Drawing.Size(173, 23);
             this.btnSpierInfo.TabIndex = 15;
             this.btnSpierInfo.Text = "Spier Info";
             this.btnSpierInfo.UseVisualStyleBackColor = true;
@@ -207,11 +212,62 @@
             this.lblProzedurVerwenden.TabIndex = 16;
             this.lblProzedurVerwenden.Text = "Prozedur Verwenden:";
             // 
+            // btnSpNeueAuszeichnung
+            // 
+            this.btnSpNeueAuszeichnung.Location = new System.Drawing.Point(613, 108);
+            this.btnSpNeueAuszeichnung.Name = "btnSpNeueAuszeichnung";
+            this.btnSpNeueAuszeichnung.Size = new System.Drawing.Size(173, 23);
+            this.btnSpNeueAuszeichnung.TabIndex = 17;
+            this.btnSpNeueAuszeichnung.Text = "Spieler Neue Auszeichnung";
+            this.btnSpNeueAuszeichnung.UseVisualStyleBackColor = true;
+            this.btnSpNeueAuszeichnung.Click += new System.EventHandler(this.btnSpNeueAuszeichnung_Click);
+            // 
+            // btnVNeueAuszeichnung
+            // 
+            this.btnVNeueAuszeichnung.Location = new System.Drawing.Point(613, 137);
+            this.btnVNeueAuszeichnung.Name = "btnVNeueAuszeichnung";
+            this.btnVNeueAuszeichnung.Size = new System.Drawing.Size(173, 23);
+            this.btnVNeueAuszeichnung.TabIndex = 18;
+            this.btnVNeueAuszeichnung.Text = "Verein Neue Auszeichnung";
+            this.btnVNeueAuszeichnung.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(615, 234);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(173, 23);
+            this.button1.TabIndex = 21;
+            this.button1.Text = "Verein Neue Auszeichnung";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(615, 205);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(173, 23);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "Spieler Neue Auszeichnung";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // btnWerbePartnerHinzufügen
+            // 
+            this.btnWerbePartnerHinzufügen.Location = new System.Drawing.Point(615, 176);
+            this.btnWerbePartnerHinzufügen.Name = "btnWerbePartnerHinzufügen";
+            this.btnWerbePartnerHinzufügen.Size = new System.Drawing.Size(173, 23);
+            this.btnWerbePartnerHinzufügen.TabIndex = 19;
+            this.btnWerbePartnerHinzufügen.Text = "Werbe Partner Hinzufügen";
+            this.btnWerbePartnerHinzufügen.UseVisualStyleBackColor = true;
+            // 
             // FrmHauptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 354);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnWerbePartnerHinzufügen);
+            this.Controls.Add(this.btnVNeueAuszeichnung);
+            this.Controls.Add(this.btnSpNeueAuszeichnung);
             this.Controls.Add(this.lblProzedurVerwenden);
             this.Controls.Add(this.btnSpierInfo);
             this.Controls.Add(this.lblTabellen);
@@ -255,5 +311,10 @@
         private Label lblTabellen;
         private Button btnSpierInfo;
         private Label lblProzedurVerwenden;
+        private Button btnSpNeueAuszeichnung;
+        private Button btnVNeueAuszeichnung;
+        private Button button1;
+        private Button button2;
+        private Button btnWerbePartnerHinzufügen;
     }
 }

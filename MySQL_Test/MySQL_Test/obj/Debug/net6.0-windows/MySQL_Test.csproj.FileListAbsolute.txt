@@ -107,3 +107,40 @@ D:\Sador Schule\Schule\DBK\DBK_Mittelstufe\Transfermakt\Transfermarkt\MySQL_Test
 D:\Sador Schule\Schule\DBK\DBK_Mittelstufe\Transfermakt\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.genruntimeconfig.cache
 D:\Sador Schule\Schule\DBK\DBK_Mittelstufe\Transfermakt\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\ref\MySQL_Test.dll
 D:\Sador Schule\Schule\DBK\DBK_Mittelstufe\Transfermakt\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.FrmProzedurEingabe.resources
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\MySQL_Test.exe
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\MySQL_Test.deps.json
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\MySQL_Test.runtimeconfig.json
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\MySQL_Test.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\MySQL_Test.pdb
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\BouncyCastle.Cryptography.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\Google.Protobuf.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\K4os.Compression.LZ4.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\K4os.Compression.LZ4.Streams.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\K4os.Hash.xxHash.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\MySql.Data.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\System.IO.Pipelines.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\System.Text.Encodings.Web.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\System.Text.Json.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\ZstdSharp.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\runtimes\win-x64\native\comerr64.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\runtimes\win-x64\native\gssapi64.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\runtimes\win-x64\native\k5sprt64.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\runtimes\win-x64\native\krb5_64.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\runtimes\win-x64\native\krbcc64.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.csproj.AssemblyReference.cache
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.FrmHauptForm.resources
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.FrmNeueSpalte.resources
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.FrmProzedurEingabe.resources
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.csproj.GenerateResource.cache
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.AssemblyInfoInputs.cache
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.AssemblyInfo.cs
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.csproj.CoreCompileInputs.cache
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.csproj.CopyComplete
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\refint\MySQL_Test.dll
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.pdb
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.genruntimeconfig.cache
+C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\ref\MySQL_Test.dll

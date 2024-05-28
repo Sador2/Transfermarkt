@@ -32,12 +32,14 @@
             this.btnAbbruch = new System.Windows.Forms.Button();
             this.lblÜberschrieft = new System.Windows.Forms.Label();
             this.tbxSpielerName = new System.Windows.Forms.TextBox();
+            this.tbxZwei = new System.Windows.Forms.TextBox();
+            this.tbxDrei = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnBestätigen
             // 
             this.btnBestätigen.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnBestätigen.Location = new System.Drawing.Point(125, 67);
+            this.btnBestätigen.Location = new System.Drawing.Point(234, 128);
             this.btnBestätigen.Name = "btnBestätigen";
             this.btnBestätigen.Size = new System.Drawing.Size(75, 23);
             this.btnBestätigen.TabIndex = 0;
@@ -47,7 +49,7 @@
             // btnAbbruch
             // 
             this.btnAbbruch.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnAbbruch.Location = new System.Drawing.Point(44, 67);
+            this.btnAbbruch.Location = new System.Drawing.Point(153, 128);
             this.btnAbbruch.Name = "btnAbbruch";
             this.btnAbbruch.Size = new System.Drawing.Size(75, 23);
             this.btnAbbruch.TabIndex = 1;
@@ -58,26 +60,44 @@
             // 
             this.lblÜberschrieft.AutoSize = true;
             this.lblÜberschrieft.Font = new System.Drawing.Font("Showcard Gothic", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblÜberschrieft.Location = new System.Drawing.Point(26, 9);
+            this.lblÜberschrieft.Location = new System.Drawing.Point(91, 51);
             this.lblÜberschrieft.Name = "lblÜberschrieft";
-            this.lblÜberschrieft.Size = new System.Drawing.Size(210, 26);
+            this.lblÜberschrieft.Size = new System.Drawing.Size(190, 26);
             this.lblÜberschrieft.TabIndex = 2;
-            this.lblÜberschrieft.Text = "Spieler Eingeben:";
+            this.lblÜberschrieft.Text = "Ueberschrieft:";
             // 
             // tbxSpielerName
             // 
             this.tbxSpielerName.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbxSpielerName.Location = new System.Drawing.Point(63, 38);
+            this.tbxSpielerName.Location = new System.Drawing.Point(99, 80);
             this.tbxSpielerName.Name = "tbxSpielerName";
-            this.tbxSpielerName.Size = new System.Drawing.Size(122, 23);
+            this.tbxSpielerName.Size = new System.Drawing.Size(81, 23);
             this.tbxSpielerName.TabIndex = 3;
+            // 
+            // tbxZwei
+            // 
+            this.tbxZwei.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbxZwei.Location = new System.Drawing.Point(186, 80);
+            this.tbxZwei.Name = "tbxZwei";
+            this.tbxZwei.Size = new System.Drawing.Size(81, 23);
+            this.tbxZwei.TabIndex = 4;
+            // 
+            // tbxDrei
+            // 
+            this.tbxDrei.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbxDrei.Location = new System.Drawing.Point(273, 80);
+            this.tbxDrei.Name = "tbxDrei";
+            this.tbxDrei.Size = new System.Drawing.Size(81, 23);
+            this.tbxDrei.TabIndex = 5;
             // 
             // FrmProzedurEingabe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(277, 113);
+            this.ClientSize = new System.Drawing.Size(487, 308);
+            this.Controls.Add(this.tbxDrei);
+            this.Controls.Add(this.tbxZwei);
             this.Controls.Add(this.tbxSpielerName);
             this.Controls.Add(this.lblÜberschrieft);
             this.Controls.Add(this.btnAbbruch);
@@ -96,5 +116,7 @@
         private Button btnAbbruch;
         private Label lblÜberschrieft;
         private TextBox tbxSpielerName;
+        private TextBox tbxZwei;
+        private TextBox tbxDrei;
     }
 }
