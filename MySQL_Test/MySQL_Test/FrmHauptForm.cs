@@ -1,7 +1,13 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MySQL_Test
 {
@@ -145,37 +151,32 @@ namespace MySQL_Test
             TabelleAnzeige(query, "WettbewerbID", "Name", "Jahr");
         }
 
+        private void btnwettbewerb_verein_Click(object sender, EventArgs e)
+        {
+            ViewÜberschrieft("Wettbewerb und Verein");
+            string query = "SELECT * FROM wettbewerb_verein;";
+            TabelleAnzeige(query, "WettbewerbID", "VereinID");
+        }
+
         private void btnSpalteHinzufügen_Click(object sender, EventArgs e)
         {
             if (AktuelleTabelle == "")
             {
-                throw new Exception("Welche Tabelle?");
+                MessageBox.Show("Wähle erstmal eine Tabelle", "Welche Tabelle?");
             }
             else
             {
                 FrmNeueSpalte frmNeueSpalte = new FrmNeueSpalte();
-                if (frmNeueSpalte.DialogResult == DialogResult.OK)
+                if (frmNeueSpalte.ShowDialog() == DialogResult.OK)
                 {
+                    string query = "";
                     switch (AktuelleTabelle)
                     {
                         case "Spieler":
-
+                            query = $"INSERT INTO {AktuelleTabelle} (Name, Geburtsdatum, NationID) VALUES ('{frmNeueSpalte.Eins}',' {frmNeueSpalte.Zwei}', {frmNeueSpalte.Drei})";
                             break;
-
-                        case "Auszeichnung":
-
-                            break;
-
-                        case "Statistik":
-
-                            break;
-
-                        case "Nation":
-
-                            break;
-
                         case "Verein":
-
+                            query = $"INSERT INTO {AktuelleTabelle} (Name, WerbepartnerID) VALUES ('{frmNeueSpalte.Eins}',' {frmNeueSpalte.Zwei}')";
                             break;
 
                         case "Trainer":
@@ -193,11 +194,62 @@ namespace MySQL_Test
                         case "Wettbewerb":
 
                             break;
+
+                        default:
+                            MessageBox.Show("In dieser Tabelle kannst du nicht Hinzufügen", "Falsche Tabelle",MessageBoxButtons.OKCancel);
+                            query = "Fehler";
+                            break;
+                    }
+
+                    Klasse_Transfermarkt klasse_Transfermarkt = new Klasse_Transfermarkt();
+                    // Verbindung zur Datenbank öffnen und sicherstellen, dass sie ordnungsgemäß geschlossen wird
+                    using (MySqlConnection connection = new MySqlConnection(klasse_Transfermarkt.ConnectionString))
+                    {
+                        connection.Open(); // Verbindung öffnen
+                                           // SQL-Abfrage zum Einfügen eines neuen Spielers
+                                           // SQL-Befehl vorbereiten
+                        int AnzahlDatensätzen = Regex.Matches(query, ",").Count / 2 + 1;
+                        using (MySqlCommand command = new MySqlCommand(query, connection))
+                        {
+                            switch (AktuelleTabelle)
+                            {
+                                case "Spieler":
+                                    command.Parameters.AddWithValue("@name", frmNeueSpalte.Eins);
+                                    command.Parameters.AddWithValue("@birthDate", frmNeueSpalte.Zwei);
+                                    command.Parameters.AddWithValue("@nationId", frmNeueSpalte.Drei);
+                                    break;
+                                case "Verein":
+                                    command.Parameters.AddWithValue("@name", frmNeueSpalte.Eins);
+                                    command.Parameters.AddWithValue("@werbepartnerID", frmNeueSpalte.Zwei);
+                                    break;
+
+                                case "Trainer":
+
+                                    break;
+
+                                case "Vertrag":
+
+                                    break;
+
+                                case "Werbepartner":
+
+                                    break;
+
+                                case "Wettbewerb":
+
+                                    break;
+
+                                default:
+                                    query = "Fehler";
+                                    break;
+                            }
+                            command.ExecuteNonQuery();
+                        }
+                        connection.Close();
                     }
                 }
             }
         }
-
         private void btnSpalteLoeschen_Click(object sender, EventArgs e)
         {
             // Überprüfen, ob eine Zeile ausgewählt ist
@@ -208,7 +260,7 @@ namespace MySQL_Test
                 {
                     // Den Wert der ersten Spalte (z. B. die SpielerID) auslesen
                     string id = selectedItem.SubItems[0].Text;
-
+                    
                     // Bestätigen, ob der Benutzer die Zeile wirklich löschen möchte
                     DialogResult result = MessageBox.Show("Möchten Sie die ausgewählte Zeile wirklich löschen?", "Bestätigung", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
@@ -219,10 +271,14 @@ namespace MySQL_Test
                         // Den Tabellennamen übergeben
                         string tableName = AktuelleTabelle; // Setzen Sie den Namen Ihrer Tabelle hier ein
                         string spalteName = AktuelleTabelle; // Setzen Sie den Namen Ihrer Tabelle hier ein
-                        int idZahl = SelectedRowID;
+                        int idZahl = int.Parse(id);
 
                         if (AktuelleTabelle == "Auszeichnung")
-                        { spalteName = "Spieler"; }
+                        {
+                            // Die VereinID auslesen (angenommen, sie ist im zweiten SubItem gespeichert)
+                            string vereinId = selectedItem.SubItems[1].Text;
+                            spalteName = "Spieler";
+                        }
 
                         // Überprüfen Sie die Gültigkeit des Tabellennamens
                         if (!string.IsNullOrEmpty(tableName))
@@ -232,12 +288,21 @@ namespace MySQL_Test
                             {
                                 try
                                 {
+                                    string deleteQuery = $"DELETE FROM {tableName} WHERE {spalteName}ID = @id"; // Ändern Sie dies entsprechend Ihrer Tabellenstruktur
                                     connection.Open();
-                                    string deleteQuery = $"DELETE FROM {tableName} WHERE {spalteName}ID = {idZahl}"; // Ändern Sie dies entsprechend Ihrer Tabellenstruktur
+                                    if (tableName == "Auszeichnung")
+                                    {
+                                        deleteQuery = $"DELETE FROM {tableName} WHERE SpielerID = @id AND VereinID = @vereinId";
+                                    }
 
                                     using (MySqlCommand command = new MySqlCommand(deleteQuery, connection))
                                     {
-                                        command.Parameters.AddWithValue("@id", id);
+                                        command.Parameters.AddWithValue("@id", idZahl);
+                                        if (tableName == "Auszeichnung")
+                                        {
+                                            int vereinIdZahl = int.Parse(selectedItem.SubItems[1].Text);
+                                            command.Parameters.AddWithValue("@vereinId", vereinIdZahl);
+                                        }
                                         command.ExecuteNonQuery();
                                     }
 
@@ -334,25 +399,50 @@ namespace MySQL_Test
             }
         }
 
-        public void ProzedurEingabeOhne(string spielerName, string auszeichnungName, DateTime auszeichnungDatum)
+        public void ProzedurEingabeOhneView(string procedur, string spielerName, string zweiteEingabe = "", DateTime? dritteEingabe = null)
         {
             FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
-            Klasse_Transfermarkt flasse_Transfermarkt = new Klasse_Transfermarkt();
+            Klasse_Transfermarkt klasse_Transfermarkt = new Klasse_Transfermarkt();
 
             // Verbindung zur Datenbank herstellen und die gespeicherte Prozedur ausführen
-            using (MySqlConnection connection = new MySqlConnection(flasse_Transfermarkt.ConnectionString))
+            using (MySqlConnection connection = new MySqlConnection(klasse_Transfermarkt.ConnectionString))
             {
                 try
                 {
                     connection.Open();
-                    using (MySqlCommand command = new MySqlCommand("NeueAuszeichnungHinzufuegen", connection))
+                    using (MySqlCommand command = new MySqlCommand(procedur, connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
 
                         // Parameter hinzufügen
-                        command.Parameters.AddWithValue("@spieler_name", spielerName);
-                        command.Parameters.AddWithValue("@neue_auszeichnung_name", auszeichnungName);
-                        command.Parameters.AddWithValue("@auszeichnung_datum", auszeichnungDatum);
+                        switch (procedur)
+                        {
+                            case "SpielerToreErhoehen":
+                                command.Parameters.AddWithValue("@p_SpielerName", spielerName);
+                                command.Parameters.AddWithValue("@p_AnzahlTore", Convert.ToInt32(zweiteEingabe));
+                                break;
+
+                            case "Hinzu_Änd_Verein_Werbepartner":
+                                command.Parameters.AddWithValue("@p_VereinName", spielerName);
+                                command.Parameters.AddWithValue("@p_WerbepartnerName", zweiteEingabe);
+                                break;
+
+                            case "V_NeueAuszeichnungHinzufuegen":
+                                command.Parameters.AddWithValue("@verein_name", spielerName);
+                                command.Parameters.AddWithValue("@neue_auszeichnung_name", zweiteEingabe);
+                                command.Parameters.AddWithValue("@auszeichnung_datum", dritteEingabe);
+                                break;
+
+                            case "NeueAuszeichnungHinzufuegen":
+                                command.Parameters.AddWithValue("@spieler_name", spielerName);
+                                command.Parameters.AddWithValue("@neue_auszeichnung_name", zweiteEingabe);
+                                command.Parameters.AddWithValue("@auszeichnung_datum", dritteEingabe);
+                                break;
+
+                            default:
+                                MessageBox.Show($"Prozedur für: {procedur} konnte nicht gefunden werden", "Prozedur Fehler!");
+                                break;
+                        }
 
                         // Prozedur ausführen
                         int rowsAffected = command.ExecuteNonQuery();
@@ -376,30 +466,65 @@ namespace MySQL_Test
 
 
 
+        //Prozedur Button
         private void btnSpierInfo_Click(object sender, EventArgs e)
         {
             FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
-            frmProzedurEingabe.Überschrieft = "Spieler Eingeben";
-            ViewÜberschrieft("Spieler Info");
+            frmProzedurEingabe.Überschrieft = "Spieler Infomartion:";
 
             if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
             {
                 string query = $"CALL SpielerInformationen('{frmProzedurEingabe.SpielerName}')";
                 ProzedurEingabe(query);
+                ViewÜberschrieft("Spieler Info:");
             }
         }
         private void btnSpNeueAuszeichnung_Click(object sender, EventArgs e)
         {
             FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
-            frmProzedurEingabe.Überschrieft = "Spieler, Auszeichnung und das Datum eingeben:";
-            ViewÜberschrieft("Vom Spieler Neue Auszeichnung");
+            frmProzedurEingabe.Überschrieft = "Spieler kriegt neue Auszeichnung:";
 
             if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
             {
 
-                ProzedurEingabeOhne(frmProzedurEingabe.Name, frmProzedurEingabe.Zwei, frmProzedurEingabe.Drei);
+                ProzedurEingabeOhneView("NeueAuszeichnungHinzufuegen", frmProzedurEingabe.Name, frmProzedurEingabe.Zwei, frmProzedurEingabe.Drei);
             }
         }
 
+        private void btnVNeueAuszeichnung_Click(object sender, EventArgs e)
+        {
+            FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
+            frmProzedurEingabe.Überschrieft = "Verein kriegt neue Auszeichnung:";
+
+            if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
+            {
+
+                ProzedurEingabeOhneView("V_NeueAuszeichnungHinzufuegen", frmProzedurEingabe.Name, frmProzedurEingabe.Zwei, frmProzedurEingabe.Drei);
+            }
+        }
+
+        private void btnWerbePartnerHinzufügen_Click(object sender, EventArgs e)
+        {
+            FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
+            frmProzedurEingabe.Überschrieft = "Hinzu oder änder von vohandene Verein und Werbepartner:";
+
+            if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
+            {
+
+                ProzedurEingabeOhneView("Hinzu_Änd_Verein_Werbepartner", frmProzedurEingabe.Name, frmProzedurEingabe.Zwei);
+            }
+        }
+
+        private void btnSpielerToreErhoehen_Click(object sender, EventArgs e)
+        {
+            FrmProzedurEingabe frmProzedurEingabe = new FrmProzedurEingabe();
+            frmProzedurEingabe.Überschrieft = "Eingeben von weiteren Spieler Tore:";
+            
+            if (frmProzedurEingabe.ShowDialog() == DialogResult.OK)
+            {
+
+                ProzedurEingabeOhneView("SpielerToreErhoehen", frmProzedurEingabe.Name, frmProzedurEingabe.TorAnzahl.ToString());
+            }
+        }
     }
 }

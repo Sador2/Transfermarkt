@@ -47,9 +47,9 @@
             this.lblProzedurVerwenden = new System.Windows.Forms.Label();
             this.btnSpNeueAuszeichnung = new System.Windows.Forms.Button();
             this.btnVNeueAuszeichnung = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSpielerToreErhoehen = new System.Windows.Forms.Button();
             this.btnWerbePartnerHinzufügen = new System.Windows.Forms.Button();
+            this.btnwettbewerb_verein = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnSpalteHinzufügen
@@ -230,24 +230,17 @@
             this.btnVNeueAuszeichnung.TabIndex = 18;
             this.btnVNeueAuszeichnung.Text = "Verein Neue Auszeichnung";
             this.btnVNeueAuszeichnung.UseVisualStyleBackColor = true;
+            this.btnVNeueAuszeichnung.Click += new System.EventHandler(this.btnVNeueAuszeichnung_Click);
             // 
-            // button1
+            // btnSpielerToreErhoehen
             // 
-            this.button1.Location = new System.Drawing.Point(615, 234);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 23);
-            this.button1.TabIndex = 21;
-            this.button1.Text = "Verein Neue Auszeichnung";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(615, 205);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 23);
-            this.button2.TabIndex = 20;
-            this.button2.Text = "Spieler Neue Auszeichnung";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnSpielerToreErhoehen.Location = new System.Drawing.Point(615, 205);
+            this.btnSpielerToreErhoehen.Name = "btnSpielerToreErhoehen";
+            this.btnSpielerToreErhoehen.Size = new System.Drawing.Size(173, 23);
+            this.btnSpielerToreErhoehen.TabIndex = 20;
+            this.btnSpielerToreErhoehen.Text = "Spieler Tore Erhöhen";
+            this.btnSpielerToreErhoehen.UseVisualStyleBackColor = true;
+            this.btnSpielerToreErhoehen.Click += new System.EventHandler(this.btnSpielerToreErhoehen_Click);
             // 
             // btnWerbePartnerHinzufügen
             // 
@@ -257,14 +250,25 @@
             this.btnWerbePartnerHinzufügen.TabIndex = 19;
             this.btnWerbePartnerHinzufügen.Text = "Werbe Partner Hinzufügen";
             this.btnWerbePartnerHinzufügen.UseVisualStyleBackColor = true;
+            this.btnWerbePartnerHinzufügen.Click += new System.EventHandler(this.btnWerbePartnerHinzufügen_Click);
+            // 
+            // btnwettbewerb_verein
+            // 
+            this.btnwettbewerb_verein.Location = new System.Drawing.Point(671, 311);
+            this.btnwettbewerb_verein.Name = "btnwettbewerb_verein";
+            this.btnwettbewerb_verein.Size = new System.Drawing.Size(115, 26);
+            this.btnwettbewerb_verein.TabIndex = 22;
+            this.btnwettbewerb_verein.Text = "wettbewerb/Verein";
+            this.btnwettbewerb_verein.UseVisualStyleBackColor = true;
+            this.btnwettbewerb_verein.Click += new System.EventHandler(this.btnwettbewerb_verein_Click);
             // 
             // FrmHauptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 354);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnwettbewerb_verein);
+            this.Controls.Add(this.btnSpielerToreErhoehen);
             this.Controls.Add(this.btnWerbePartnerHinzufügen);
             this.Controls.Add(this.btnVNeueAuszeichnung);
             this.Controls.Add(this.btnSpNeueAuszeichnung);
@@ -286,7 +290,7 @@
             this.Controls.Add(this.btnSpalteHinzufügen);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmHauptForm";
-            this.Text = "Form1";
+            this.Text = "Transfermarkt";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmHauptForm_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -313,8 +317,8 @@
         private Label lblProzedurVerwenden;
         private Button btnSpNeueAuszeichnung;
         private Button btnVNeueAuszeichnung;
-        private Button button1;
-        private Button button2;
+        private Button btnSpielerToreErhoehen;
         private Button btnWerbePartnerHinzufügen;
+        private Button btnwettbewerb_verein;
     }
 }

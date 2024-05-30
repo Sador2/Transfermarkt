@@ -16,5 +16,26 @@ namespace MySQL_Test
         {
             InitializeComponent();
         }
+
+        public string Eins
+        {
+            get { return tbxEins.Text; }
+            set { tbxEins.Text = value; }
+        }
+        public string Zwei
+        {
+            get { return tbxZwei.Text; }
+            set { tbxZwei.Text = value; }
+        }
+        public string Drei
+        {
+            get { return tbxDrei.Text; }
+            set { tbxDrei.Text = value; }
+        }
+        public string Vier
+        {
+            get { return tbxVier.Text; }
+            set { tbxVier.Text = value; }
+        }
     }
 }
