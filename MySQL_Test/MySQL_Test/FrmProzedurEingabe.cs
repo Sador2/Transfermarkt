@@ -74,7 +74,7 @@ namespace MySQL_Test
         }
 
         // Methoden
-        public void TextBoxenSicht()
+        public void DesigneUebersicht()
         {
             // Label unsichtbar machen
             lblSpielerName.Visible = false;
@@ -220,7 +220,7 @@ namespace MySQL_Test
 
         private void FrmProzedurEingabe_Load(object sender, EventArgs e)
         {
-            TextBoxenSicht();
+            DesigneUebersicht();
         }
 
         private void btnBestätigen_Click(object sender, EventArgs e)

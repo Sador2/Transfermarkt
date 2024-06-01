@@ -16,6 +16,7 @@ namespace MySQL_Test
         //Attribut
         public string AktuelleTabelle;
         //Eigenschaft
+        public static string BenutzerZustand = "Gast";
         private int SelectedRowID
         {
             get
@@ -37,7 +38,7 @@ namespace MySQL_Test
 
         public FrmHauptForm()
         {
-            AktuelleTabelle = "";
+            AktuelleTabelle = "";;
             InitializeComponent();
             InitializierenListView();
         }
@@ -160,13 +161,18 @@ namespace MySQL_Test
 
         private void btnSpalteHinzufügen_Click(object sender, EventArgs e)
         {
+            FrmNeueSpalte frmNeueSpalte = new FrmNeueSpalte();
             if (AktuelleTabelle == "")
             {
                 MessageBox.Show("Wähle erstmal eine Tabelle", "Welche Tabelle?");
             }
+            else if (frmNeueSpalte.Uberschrieft == "Statistik" || frmNeueSpalte.Uberschrieft == "Auszeichnung")
+            {
+                MessageBox.Show("Du auch eine Prozedur verwenden", "Prozedur Benutzen", MessageBoxButtons.OKCancel);
+            }
             else
             {
-                FrmNeueSpalte frmNeueSpalte = new FrmNeueSpalte();
+                frmNeueSpalte.Uberschrieft = AktuelleTabelle;
                 if (frmNeueSpalte.ShowDialog() == DialogResult.OK)
                 {
                     string query = "";
@@ -180,20 +186,24 @@ namespace MySQL_Test
                             break;
 
                         case "Trainer":
-
+                            query = $"INSERT INTO {AktuelleTabelle} (Name, VereinID) VALUES ('{frmNeueSpalte.Eins}',' {frmNeueSpalte.Zwei}')";
                             break;
 
                         case "Vertrag":
-
+                            query = $"INSERT INTO {AktuelleTabelle} (SpielerID, VereinID, Startdatum,Enddatum,Gehalt) VALUES ('{frmNeueSpalte.Eins}',' {frmNeueSpalte.Zwei}', {frmNeueSpalte.Drei},'{frmNeueSpalte.Vier}','{frmNeueSpalte.Fünf}',)";
                             break;
 
                         case "Werbepartner":
-
+                            query = $"INSERT INTO {AktuelleTabelle} (Name) VALUES ('{frmNeueSpalte.Eins}')";
                             break;
 
                         case "Wettbewerb":
-
+                            query = $"INSERT INTO {AktuelleTabelle} (Name, Jahr) VALUES ('{frmNeueSpalte.Eins}',' {frmNeueSpalte.Zwei}')";
                             break;
+
+                        case "Nation":
+                            query = $"INSERT INTO {AktuelleTabelle} (Name) VALUES ('{frmNeueSpalte.Eins}')";
+                            break; 
 
                         default:
                             MessageBox.Show("In dieser Tabelle kannst du nicht Hinzufügen", "Falsche Tabelle",MessageBoxButtons.OKCancel);
@@ -224,19 +234,21 @@ namespace MySQL_Test
                                     break;
 
                                 case "Trainer":
-
+                                    command.Parameters.AddWithValue("@name", frmNeueSpalte.Eins);
+                                    command.Parameters.AddWithValue("@vereinid", frmNeueSpalte.Zwei);
                                     break;
 
                                 case "Vertrag":
-
+                                    // ///////////////////////////////////////////////////////////////////////////////////
                                     break;
 
                                 case "Werbepartner":
-
+                                    command.Parameters.AddWithValue("@name", frmNeueSpalte.Eins);
                                     break;
 
                                 case "Wettbewerb":
-
+                                    command.Parameters.AddWithValue("@name", frmNeueSpalte.Eins);
+                                    command.Parameters.AddWithValue("@jahr", frmNeueSpalte.Zwei);
                                     break;
 
                                 default:
@@ -524,6 +536,67 @@ namespace MySQL_Test
             {
 
                 ProzedurEingabeOhneView("SpielerToreErhoehen", frmProzedurEingabe.Name, frmProzedurEingabe.TorAnzahl.ToString());
+            }
+        }
+
+        private void btnAnmelden_Click(object sender, EventArgs e)
+        {
+            FrmAnmelden frmAnmelden = new FrmAnmelden();
+
+            if (btnAnmelden.Text == "Anmelden")
+            {
+                if (frmAnmelden.ShowDialog() == DialogResult.OK)
+                {
+                    BenutzerZustand = frmAnmelden.Benutzer;
+                    AktuelleZuStand();
+                }
+            }
+            else
+            {
+                AktuelleZuStand();
+            }
+        }
+
+        private void FrmHauptForm_Load(object sender, EventArgs e)
+        {
+            AktuelleZuStand();
+        }
+
+        public void AktuelleZuStand()
+        {
+            //Aktueller Benutzer
+            lblBenutzer.Text = $"Benutzer Zustand: {BenutzerZustand}";
+
+            //Berechtigung des Benutzers
+            if (btnAnmelden.Text == "Abmelden")
+            {
+                lblProzedurVerwenden.Visible = false;
+
+                btnSpalteHinzufügen.Visible = false;
+                btnSpalteLoeschen.Visible = false;
+
+                btnAnmelden.Text = "Anmelden";
+                btnSpierInfo.Visible = false;
+                btnSpNeueAuszeichnung.Visible = false;
+                btnVNeueAuszeichnung.Visible = false;
+                btnWerbePartnerHinzufügen.Visible = false;
+                btnSpielerToreErhoehen.Visible = false;
+            }
+            else
+            {
+                lblBenutzer.Text = $"Benutzer Zustand: Gast";
+
+                lblProzedurVerwenden.Visible = true;
+
+                btnAnmelden.Text = "Abmelden";
+                btnSpalteHinzufügen.Visible = true;
+                btnSpalteLoeschen.Visible = true;
+
+                btnSpierInfo.Visible = true;
+                btnSpNeueAuszeichnung.Visible = true;
+                btnVNeueAuszeichnung.Visible = true;
+                btnWerbePartnerHinzufügen.Visible = true;
+                btnSpielerToreErhoehen.Visible = true;
             }
         }
     }

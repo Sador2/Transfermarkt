@@ -144,3 +144,5 @@ C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\D
 C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.pdb
 C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.genruntimeconfig.cache
 C:\Users\Bassam.k2\Source\Repos\Sador2\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\ref\MySQL_Test.dll
+D:\Sador Schule\Schule\DBK\DBK_Mittelstufe\Transfermakt\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.FrmAnmelden.resources
+D:\Sador Schule\Schule\DBK\DBK_Mittelstufe\Transfermakt\Transfermarkt\MySQL_Test\MySQL_Test\obj\Debug\net6.0-windows\MySQL_Test.Properties.Resources.resources
